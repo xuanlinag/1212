@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Imformation</title>
+    <link href="payment-form.css" rel="stylesheet">
+</head>
+  <style>
+    *{
+        box-sizing: border-box;
+        margin:3px;
+        padding:0px;
+    }
+    body{
+        font-size:12pt;
+        color:black;
+        background: rgb(171, 235, 233);
+    }
+    
+    form{
+        border:1px solid rgb(33, 28, 28);
+        border-radius: 10px;
+        margin:100px auto;
+        width:800px;
+        overflow: hidden;
+        text-align: left ;
+    }
+    .frm-group .header{
+        color:green;
+        font-weight: bolder;
+        font-size:14pt;
+        width:100%;
+        text-align:left;
+        border-bottom: 2px solid darkgray;
+        padding:10px;
+        margin-bottom:50px;
+    }
+    .frm-group{
+        width:380px;
+        margin:10px auto;
+    }
+    .frm-group tr {
+        width:360px;
+        margin:20px auto;
+    }
+    .frm-group label{
+        width: 100px;
+        font-weight: bolder;
+        text-align: right;
+    }
+    .frm-group input, 
+    .frm-group select,
+    .frm-group textarea
+    {
+        flex:1;
+        border-radius: 3px;
+        border:1px solid green;
+        outline: none;
+        width:120%;
+    }
+    .frm-group input, 
+    .frm-group select
+    {
+        height:30px;
+    }
+    input:hover,input:focus,select:hover,select:focus,textarea:hover,textarea:focus{
+        border:1px solid rgb(14, 14, 14);
+    }
+    .frm-group input[type="radio"]{
+        width:20px;
+        height:20px;
+        margin:50px;
+    } 
+
+    input[type="submit"]{
+        display:block;
+        clear:left;
+        background:green;
+        font-size:14pt;
+        font-weight: bolder;
+        color:white;
+        width:10px;
+        border-radius: 10px;
+        border:10px solid blue;
+        padding:50px;
+        margin:100px auto;
+    }
+    input[type="submit"]:hover{
+        background: darkgreen;
+    }
+</style>
+<body>
+    <form onsubmit="return validateForm()" action="" method="post">
+        <h1>-------------------家政合同管理程序-------------------</h1>
+        <p>必填项 <strong><span aria-label="required">*</span></strong></p>
+        <section>
+            <fieldset>
+              <legend>性别</legend>
+              <ul>
+                  <li>
+                    <label for="title_1">
+                      <input type="radio" id="title_1" name="title" value="A">
+                      男
+                    </label>
+                  </li>
+                  <li>
+                    <label for="title_2">
+                      <input type="radio" id="title_2" name="title" value="K" >
+                      女
+                    </label>
+                  </li>
+              </ul>
+            </fieldset>
+            <p>
+                <label for="num">
+                  <span>合同编号: </span>
+                  <strong><span aria-label="required">*</span></strong>
+                </label>
+                <input type="text" name="num" required="true" >
+                <span for="error" id="numErr"></span>
+            </p>
+            <p>
+              <label for="name">
+                <span>服务人员姓名: </span>
+              </label>
+              <input type="text" id="name" name="username" required="true">
+              <span for="error" id="nameErr"></span>
+            </p>
+            <p>
+                <label for="kehu">
+                  <span>客户名称: </span>
+                  <strong><span aria-label="required">*</span></strong>
+                </label>
+                <input type="text" id="kehu" name="username" required="true">
+            </p>
+        </section>
+        <section>
+            <p>
+              <label for="cardID">
+                <span>合同状态:</span>
+                <strong><span aria-label="required">*</span></strong>
+              </label>
+              <select id="cardID" name="usercard">
+                <option value="0">签订</option>
+                <option value="1">付款</option>
+                <option value="2">完成</option>
+                <option value="3">取消</option>
+              </select>
+              <span for="error" id="nameErr"></span>
+            </p>
+            <p>
+                <label for="temp">
+                  <span>合同类型:</span>
+                  <strong><span aria-label="required">*</span></strong>
+                </label>
+                <select id="temp" name="usercard0">
+                  <option value="0">普通合同</option>
+                  <option value="1">贵宾合同</option>
+                </select>
+              </p>
+            <p>
+                <p>
+                    <label for="Date1">
+                      <span>签订日期:</span>
+                      <strong><span aria-label="required">*</span></strong>
+                    </label>
+                    <input type="date" id="expiration" required="true" placeholder="MM/YY/DD" >
+                  </p> 
+                  <p>
+                    <label for="Date2">
+                      <span>到期日期:</span>
+                      <strong><span aria-label="required">*</span></strong>
+                    </label>
+                    <input type="date" id="expiration" required="true" placeholder="MM/YY/DD" >
+                  </p> 
+            <td>
+                    <label for="neirong">合同内容:</label>
+                    <strong><span aria-label="required">*</span></strong>
+            </td>
+            <td>
+                    <textarea name="neirong" id="neirong" cols="30" rows="4"placeholder="大段文本描述"></textarea>
+            </td> 
+            <p>
+                <label for="type">
+                  <span>合同金额: </span>
+                  <strong><span aria-label="required">*</span></strong>
+                  <td>
+                    <input type="number" name="type" id="type"  placeholder="保留小数点后两位" />
+                  </td>
+                </label>
+              </p>         
+            <td>
+                <label for="result">取消原因:</label>
+                <strong><span aria-label="required">*</span></strong>
+            </td>
+            <td>
+                <textarea name="result" id="info" cols="30" rows="4"placeholder="大段文本描述合同取消原因"></textarea>
+            </td>
+            </p>
+        </section>
+        <section>
+            <p> <button type="submit">登录/注册</button> </p>
+        </section>
+    </form>
+    <script>
+        var tags = document.getElementsByTagName('input');
+        for (var i = 0; i < tags.length; i++) {
+            tags[i].onchange = function(){
+                var idname = this.name + "Err";
+                document.getElementById(idname).innerHTML = '';
+            }
+        }
+        // 显示错误消息
+        function printError(elemId, hintMsg) {
+            document.getElementById(elemId).innerHTML = hintMsg;
+        }
+        // 验证表单数据
+        function validateForm() {
+            // 获取表单元素的值
+            var num = document.querySelector("input[name='num']").value;
+            var name = document.querySelector("input[name='name']").value;
+            var pwd = document.querySelector("input[name='pwd']").value;
+            var date1 = document.querySelector("input[name='date1']").value;
+            var date2 = document.querySelector("input[name='date2']").value;   
+            if(num == "" || num == null){
+                printError("numErr", "订单编号不能为空");
+                return false;
+            }
+            if(name == "" || name == null){
+                printError("nameErr", "服务人员姓名不能为空");
+                return false;
+            }
+            if(pwd == "" || pwd == null){
+                printError("pwdError", "合同金额不能为空");
+                return false;
+            }
+            if(date1 == "" || date1 == null){
+                printError("date1Err", "日期不能为空");
+                return false;
+            }
+            if(date2 == "" || date2 == null){
+                printError("date2Err", "日期不能为空");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家政合同管理程序用户基础信息的存储</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .add_info {
+            margin: 0 auto;
+            width: 700px;
+            height: 160px;
+            text-align: center;
+            background-color: antiquewhite;
+            font-size: 14px;
+        }
+ 
+        h2 {
+            line-height: 100px;
+        }
+ 
+        ul {
+            list-style: none;
+             /* 让ul居中 */
+            margin: 0 auto;
+        }
+ 
+        li {
+            display: inline;
+        }
+ 
+        .name {
+        border: 1px solid skyblue;
+        border-radius: 3px;
+        width: 60px;
+        margin-right: 20px;
+        }
+ 
+        .hobby{
+        border: 1px solid skyblue;
+        border-radius: 3px;
+        width: 80px;
+        margin-right: 20px;
+        }
+ 
+        .name:focus,.age:focus,.hobby:focus {
+        outline: none;
+        border: 1px solid deepskyblue;
+        }
+ 
+        .age {
+        border: 1px solid skyblue;
+        border-radius: 3px;
+        width: 30px;
+        margin-right: 20px;
+        }
+        
+        .sub {
+         background-color: deepskyblue;
+         border: 2px solid rgb(14, 7, 234);
+         border-radius: 3px;
+         width: 40px;
+         color:white;
+         line-height: 20px;
+        }
+ 
+        .sub:hover {
+            background-color: rgb(88, 88, 227);  
+        }
+ 
+        #hometown, #sex {
+            margin-right: 10px;
+        }
+        
+        table {
+        border-spacing: 0;
+        border: 2px solid rgb(14, 7, 234);
+        width:700px;
+        text-align: center;
+        /* 让表格居中 */
+        margin: 0 auto;
+        border-top: 0;
+        }
+ 
+        .table_head {
+        background-color: whitesmoke;
+        }
+ 
+        th {
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 15px;
+        }
+ 
+        td {
+        border-spacing: 0;
+        padding: 0;
+        border: 2px solid rgb(15, 7, 232);
+        text-align: center;
+        height: 30px;
+        border-bottom: 0;
+        border-left: 0;
+        }
+ 
+        a{
+	   text-decoration: none;
+       color: #333;
+       /* 清楚链接下划线与颜色 */
+       }
+ 
+       .table_body tr:hover {
+        background-color: ghostwhite;
+       }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="add_info">
+            <h2>家政合同管理程序用户基础信息的存储</h2>
+            <ul>
+                <li>
+                 客户姓名:<input class="name" type="text">
+                </li>
+                <li>
+                合同编号:<input class="age" type="text">
+                </li>
+                <li>
+                性别: <select id="sex">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+                </li>
+                <li>
+                服务人员姓名:<input class="hobby" type="text">
+                </li>
+                <li>
+                 合同状态:<select id="hometown">
+                    <option value="签订">签订</option>
+                    <option value="付款">付款</option>
+                    <option value="完成">完成</option>
+                    <option value="取消">取消</option>
+                </select>
+                </li>
+                <li>
+                <button class="sub">录入</button>
+                </li>
+            </ul>
+        </div>
+        <div class="student_info">
+            <table>
+                <thead>
+                   <tr class="table_head">
+                    <th>序列</th>
+                    <th>客户姓名</th>
+                    <th>合同编号</th>
+                    <th>性别</th>
+                    <th>服务人员姓名</th>
+                    <th>合同状态</th>
+                    <th>选项</th>
+                   </tr>
+                </thead>
+                <tbody class="table_body">
+              </tbody>
+            </table>
+        </div>
+    </div>
+ 
+     <script>
+        // 读取本地存储的数据 封装为函数
+        function getLocalData() {
+            let data = localStorage.getItem('data')
+            if(data) {
+            // 如果本地有存储（字符串不为空），则返回JSON.parse()之后的对象
+                return JSON.parse(data)
+            }else{
+              // 如果本地没有存储则写入三条数据
+              let arr = [
+               {stuId: 1001, uname: 'XX', age:19, gender: '女', hobby: 'XX', hometown: '签订'},
+                   ]
+                localStorage.setItem('data',JSON.stringify(arr))
+            }
+        }
+        getLocalData()
+ 
+         // 准备好数据后端
+        let arr = [
+           {stuId: 1001, uname: 'XX', age: 19, gender: '女', hobby: 'XX', hometown: '签订'},
+        ]
+        // 获取父元素
+        let table_body = document.querySelector('.table_body')
+         // 添加按钮录入数据
+        // 获取录入按钮
+        let sub = document.querySelector('.sub')
+        // 获取表单元素
+        let name = document.querySelector('.name')
+        let age = document.querySelector('.age')
+        let sex = document.querySelector('#sex')
+        let hobby = document.querySelector('.hobby')
+        let hometown = document.querySelector('#hometown')
+ 
+        // 渲染函数 把数组里的最新数据渲染到页面中
+        function render(){
+            // 先读取本地存储数据，然后渲染
+            let arr = getLocalData()            
+            // 先删掉tbody以前的数据再渲染新的数据
+            table_body.innerHTML = ''          
+          // 根据数据的条数来渲染增加 tr
+          for(let i = 0; i < arr.length; i++){
+             // 1、创建tr
+             let tr = document.createElement('tr')
+            // 2、tr里面放内容
+            tr.innerHTML = `
+                    <td>${arr[i].stuId}</td>
+                    <td>${arr[i].uname}</td>
+                    <td>${arr[i].age}</td>
+                    <td>${arr[i].gender}</td>
+                    <td>${arr[i].hobby}</td>
+                    <td>${arr[i].hometown}</td>
+                    <td>
+                    <a href="#" data-id="${i}">删除</a>
+                    </td>
+            `
+            // 3、把tr追加到tbody 父元素.appendChild(子元素)
+            table_body.appendChild(tr)
+           // 渲染完后复原数据
+            name.value = ''
+            age.value = ''
+            sex.value = '男'
+            hometown.value  = '小江'
+          }
+        }
+        render()
+ 
+        sub.addEventListener('click',function(){
+            // 获得表单里的值 把获取到的值追加到数组里面 arr.push()
+            arr.push(
+                {
+                stuId: arr[arr.length - 1].stuId + 1,
+                uname: name.value, 
+                age: age.value, 
+                gender: sex.value, 
+                hobby: hobby.value, 
+                hometown: hometown.value
+                  }
+                )
+            // 把arr重新存入本地存储
+            localStorage.setItem('data',JSON.stringify(arr))
+             // 渲染数据
+            render()
+        })
+ 
+        // 删除操作 使用事件委托的方法 不用给每个元素都绑定点击事件
+        // 删除的也是数组里面的数据
+        table_body.addEventListener('click',function(e){
+             // 先读取本地存储数据，然后渲染
+             let arr = getLocalData() 
+             // 只有当我们点击了a链接才会执行删除操作
+            if ( e.target.tagName === 'A') {
+                // 做删除操作，即删除数组里面的数据 arr.splice()
+                // 怎么确定删除的数据是哪一个
+                //  <a href="#" id="${i}">删除</a> 给a 加上索引号
+                // console.log(e.target.id)
+ 
+                //为了避免数组为空时无法添加数据 保留第一条数据不被删除掉
+                 if(e.target.dataset.id === '0') {
+                    alert('当前数据不允许删除')
+                    return
+                 }
+                arr.splice(e.target.dataset.id,1)
+                // 删除后把arr重新存入本地存储
+                localStorage.setItem('data',JSON.stringify(arr))
+                render()
+            }
+        })
+     </script>
+ 
+</body>
+</html>
